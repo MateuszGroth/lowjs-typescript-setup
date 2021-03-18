@@ -1,0 +1,17 @@
+{
+    "compilerOptions": {
+        "baseUrl": ".",
+        "outDir": "dist",
+        "target": "ES5",
+        "module": "ES2020",
+        "noImplicitAny": false,
+        "removeComments": true,
+        "allowSyntheticDefaultImports": true,
+        "moduleResolution": "node",
+        "paths": {
+            "types": ["src/types.d.ts"],
+            "/*": ["src/*"]
+            // "utils/*": ["src/utils/*"],
+        }
+    }
+}

@@ -1,0 +1,42 @@
+{
+    "name": "lowjs-setup",
+    "version": "1.0.0",
+    "description": "",
+    "main": "server/index.ts",
+    "scripts": {
+        "webpack": "webpack",
+        "nodemon": "nodemon server/index.js",
+        "build": "webpack --mode production",
+        "build:watch": "webpack -w --mode production",
+        "test": "jest"
+    },
+    "keywords": [
+        "lowjs",
+        "typescript"
+    ],
+    "author": "",
+    "license": "ISC",
+    "browserslist": [
+        "IE 11",
+        "not dead",
+        "> 0.25%"
+    ],
+    "devDependencies": {
+        "@babel/core": "^7.13.10",
+        "@babel/register": "^7.13.8",
+        "@types/jest": "^26.0.21",
+        "browserslist": "^4.16.3",
+        "jest": "^26.6.3",
+        "progress-bar-webpack-plugin": "^2.1.0",
+        "ts-jest": "^26.5.4",
+        "ts-loader": "^8.0.18",
+        "tsconfig-paths-webpack-plugin": "^3.5.1",
+        "typescript": "^4.2.3",
+        "webpack": "^5.26.2",
+        "webpack-cli": "^4.5.0",
+        "webpack-node-externals": "^2.5.2"
+    },
+    "dependencies": {
+        "express": "^4.17.1"
+    }
+}
