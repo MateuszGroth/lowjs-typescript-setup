@@ -6,6 +6,6 @@ import { Request } from 'types';
 const app = express();
 
 app.use(router);
-app.get('*', (req, res: Request) => res.send('cze'));
+app.get('*', (req, res: Request) => res.send('zmiana 2'));
 
 app.listen(8080, () => console.log(8080));
