@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Test Site</title>
+        <style>
+            body {
+                margin: 0;
+                width: 100%;
+                height: 100vh;
+                background: #18191a;
+                font-family: 'Nunito', sans-serif;
+                color: #fff;
+            }
+
+            * {
+                margin: 0;
+                box-sizing: border-box;
+            }
+            .cont {
+                width: auto;
+                padding: 2rem;
+            }
+            .flex {
+                display: flex;
+            }
+            .flex-col {
+                flex-direction: column;
+            }
+            .msg-cont {
+                border: 1px solid #ccc;
+                border-radius: 0.75rem;
+                padding: 1rem;
+                width: 400px;
+                overflow-y: auto;
+                max-height: 400px;
+                min-height: 200px;
+                background: #222222;
+            }
+
+            .msg {
+                padding: 0.6rem 1.2rem;
+                border-radius: 1.5rem;
+                background-color: #3e4042;
+                text-align: start;
+                color: #fff;
+                align-self: flex-start;
+                line-height: 1.6rem;
+            }
+            .msg--self {
+                align-self: flex-end;
+                background-color: #3991fc;
+                text-align: end;
+            }
+            .msg + .msg {
+                margin-top: 0.5rem;
+            }
+
+            .msg-input {
+                margin-top: 1rem;
+                border-radius: 0.25rem;
+                padding: 0.5rem 0.25rem;
+                background-color: transparent;
+                border: 1px solid #ccc;
+                color: #fff;
+                font-family: 'Nunito';
+                outline: none;
+                width: 400px;
+            }
+
+            .btn {
+                outline: none;
+                background-color: #3991fc;
+                border-radius: 1.5rem;
+                padding: 0.6rem 1.2rem;
+
+                border: 0px;
+                margin-top: 1rem;
+                color: #fff;
+
+                align-self: flex-start;
+
+                cursor: pointer;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="cont">
+            <div id="msgCont" class="flex flex-col msg-cont"></div>
+            <div class="flex flex-col">
+                <input id="msgInp" type="text" class="msg-input" /> <button id="msgBtn" class="btn">Send</button>
+            </div>
+        </div>
+
+        <script type="text/javascript">
+            const sendBtn = document.getElementById('msgBtn');
+            const msgInp = document.getElementById('msgInp');
+            const msgCont = document.getElementById('msgCont');
+            const socket = new WebSocket('ws://localhost:9000');
+
+            const addMessage = (msg, self = false) => {
+                const msgP = document.createElement('p');
+                msgP.className = `msg${self ? ` msg--self` : ``}`;
+                msgP.innerHTML = msg;
+                msgCont.appendChild(msgP);
+            };
+            // Connection opened
+            socket.addEventListener('open', function (event) {
+                btn.disabled = false;
+            });
+            sendBtn.addEventListener('click', () => {
+                if (!msgInp.value) return;
+                // Listen for messages
+                addMessage(msgInp.value, true);
+                socket.send(msgInp.value);
+                msgInp.value = '';
+            });
+
+            socket.addEventListener('message', event => {
+                addMessage(event.data, false);
+            });
+        </script>
+    </body>
+</html>

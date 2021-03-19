@@ -22,3 +22,23 @@ Generated file will be located in the `dist` folder and will be named `server.js
 ###### A valid test file needs to include `.test.ts` in its name.
 
 To perform all of the tests located under `src` folder, run `npm run test`. The test engine will automatically detect all of the test files and execute them all at once.
+
+## Reducing production node modules
+
+There is an npm package called `modclean` used to reduce node_modules size, by deleting the unused files/folders.
+
+```shell
+    npm i --save modclean
+```
+
+Add `clean` script to package json, run:
+
+```shell
+    npm run clean
+```
+
+After the node_modules have been cleaned, uninstall modclean with:
+
+```shell
+    npm uninstall modclean
+```

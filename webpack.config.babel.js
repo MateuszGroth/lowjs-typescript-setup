@@ -7,10 +7,15 @@ const nodeExternals = require('webpack-node-externals');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 
 module.exports = (env = {}) => ({
+    // es5 so webpack bundles into es5 (function() instead of () =>)
+    // node so webpack does not try to bundle built in packages like http, path
+    target: ['node', 'es5'],
     entry: {
         server: './src/index.ts'
     },
+    // node externals so webpack does not try to bundle external modules like express
     externals: [nodeExternals()],
+    // externals: [nodeExternals({ allowlist: ['ws'] })],
     output: {
         path: path.resolve(__dirname, './dist'),
         filename: './[name].js'
@@ -26,6 +31,7 @@ module.exports = (env = {}) => ({
     },
     resolve: {
         extensions: ['.js', '.ts'],
+        // use aliases from tsconfig.json
         plugins: [new TsconfigPathsPlugin()]
     },
     optimization: {

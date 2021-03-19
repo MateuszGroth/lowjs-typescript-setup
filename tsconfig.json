@@ -12,6 +12,11 @@
             "types": ["src/types.d.ts"],
             "/*": ["src/*"]
             // "utils/*": ["src/utils/*"],
-        }
-    }
+        },
+        "strict": true,
+        "sourceMap": true,
+        "typeRoots": ["node_modules/@types"]
+    },
+    // exclude does not work with webpack - have to use nodeExternals anyways
+    "exclude": ["./dist", "node_modules"]
 }
