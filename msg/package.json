@@ -1,49 +1,38 @@
 {
-    "name": "lowjs-setup",
+    "name": "msg",
     "version": "1.0.0",
     "description": "",
-    "main": "server/index.ts",
+    "main": "src/main.ts",
     "scripts": {
         "webpack": "webpack",
-        "nodemon": "nodemon ./src/server.js",
         "build": "webpack --mode production",
-        "build:watch": "webpack -w --mode production",
-        "test": "jest"
+        "build:watch": "webpack -w --mode production"
     },
     "keywords": [
-        "lowjs",
         "typescript"
     ],
     "author": "",
     "license": "ISC",
     "browserslist": [
-        "IE 11",
-        "not dead",
-        "> 0.25%"
+        "defaults",
+        "not IE 11",
+        "maintained node versions",
+        "not op_mini all"
     ],
     "devDependencies": {
         "@babel/core": "^7.13.10",
         "@babel/preset-env": "^7.13.10",
         "@babel/register": "^7.13.8",
-        "@types/express": "^4.17.11",
-        "@types/jest": "^26.0.21",
-        "@types/ws": "^7.4.0",
         "babel-loader": "^8.2.2",
         "browserslist": "^4.16.3",
-        "core-js": "^3.9.1",
-        "jest": "^26.6.3",
+        "html-webpack-plugin": "^5.3.1",
+        "idb": "^6.0.0",
+        "lodash": "^4.17.21",
         "progress-bar-webpack-plugin": "^2.1.0",
-        "ts-jest": "^26.5.4",
         "ts-loader": "^8.0.18",
         "tsconfig-paths-webpack-plugin": "^3.5.1",
         "typescript": "^4.2.3",
         "webpack": "^5.26.2",
-        "webpack-cli": "^4.5.0",
-        "webpack-node-externals": "^2.5.2"
-    },
-    "dependencies": {
-        "express": "^4.17.1",
-        "websocket": "^1.0.33",
-        "ws": "^7.4.4"
+        "webpack-cli": "^4.5.0"
     }
 }

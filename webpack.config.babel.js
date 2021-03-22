@@ -6,6 +6,20 @@ const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const nodeExternals = require('webpack-node-externals');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 
+function excludeCondition(path) {
+    const nonEs5SyntaxPackages = ['ws', 'core-js'];
+
+    // DO transpile these packages
+    if (nonEs5SyntaxPackages.some(pkg => path.match(pkg))) {
+        return false;
+    }
+
+    // Ignore all other modules that are in node_modules
+    if (path.match(/node_modules/)) {
+        return true;
+    } else return false;
+}
+
 module.exports = (env = {}) => ({
     // es5 so webpack bundles into es5 (function() instead of () =>)
     // node so webpack does not try to bundle built in packages like http, path
@@ -14,8 +28,8 @@ module.exports = (env = {}) => ({
         server: './src/index.ts'
     },
     // node externals so webpack does not try to bundle external modules like express
-    externals: [nodeExternals()],
-    // externals: [nodeExternals({ allowlist: ['ws'] })],
+    // externals: [nodeExternals()],
+    externals: [nodeExternals({ allowlist: ['ws', 'core-js'] })],
     output: {
         path: path.resolve(__dirname, './dist'),
         filename: './[name].js'
@@ -26,6 +40,25 @@ module.exports = (env = {}) => ({
                 test: /\.tsx?$/,
                 use: 'ts-loader',
                 exclude: '/node_modules/'
+            },
+            {
+                test: /\.jsx?$/,
+                exclude: excludeCondition,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        sourceType: 'unambiguous',
+                        presets: [
+                            [
+                                '@babel/preset-env',
+                                {
+                                    useBuiltIns: 'usage',
+                                    corejs: '3'
+                                }
+                            ]
+                        ]
+                    }
+                }
             }
         ]
     },

@@ -1,0 +1,22 @@
+{
+    "compilerOptions": {
+        "baseUrl": ".",
+        "outDir": "../dist",
+        "target": "ES2017",
+        "module": "ES2020",
+        "noImplicitAny": false,
+        "removeComments": true,
+        "allowSyntheticDefaultImports": true,
+        "moduleResolution": "node",
+        "paths": {
+            "types": ["src/types.d.ts"],
+            "/*": ["src/*"]
+            // "utils/*": ["src/utils/*"],
+        },
+        "strict": true,
+        "sourceMap": true,
+        "typeRoots": ["node_modules/@types"]
+    },
+    // exclude does not work with webpack - have to use nodeExternals anyways
+    "exclude": ["node_modules"]
+}

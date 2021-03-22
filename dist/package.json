@@ -12,7 +12,9 @@
     "author": "",
     "license": "ISC",
     "dependencies": {
+        "core-js": "^3.9.1",
         "express": "^4.17.1",
+        "idb": "^6.0.0",
         "ws": "^7.4.4"
     }
 }
