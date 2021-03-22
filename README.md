@@ -2,10 +2,16 @@
 
 ## Setup
 
-> install required packages
+Install required packages
 
 ```shell
     npm install
+```
+
+Create .env file and define 'PORT'
+
+```shell
+PORT = 8080
 ```
 
 ## Usage
@@ -42,3 +48,24 @@ After the node_modules have been cleaned, uninstall modclean with:
 ```shell
     npm uninstall modclean
 ```
+
+## Lowjs Environment using Docker
+
+To create docker container with lowjs installed, execute following commands:
+
+```shell
+    docker run --name lowjs -p 127.0.0.1:80:8080/tcp -it ubuntu
+    $  apt update
+    $  apt install -y curl git make g++ automake autoconf libtool cmake python2 nano
+    $  curl https://bootstrap.pypa.io/pip/2.7/get-pip.py --output get-pip.py
+    $  python2 get-pip.py
+    $  pip install pyyaml
+    $  apt install -y python
+    $  curl -sL https://deb.nodesource.com/setup_14.x | bash
+    $  apt install -y nodejs
+    $  git clone --recurse-submodules https://github.com/neonious/lowjs
+    $  cd lowjs
+    $  make
+```
+
+Lowjs will be installend under /lowjs/bin/low
