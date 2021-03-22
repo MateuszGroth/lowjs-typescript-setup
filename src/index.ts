@@ -9,7 +9,7 @@ import { Request } from 'types';
 const app = express();
 const server = http.createServer(app);
 
-app.use(express.static('dist'));
+app.use(express.static('./'));
 
 const wss = new WebSocket.Server({ server, port: 9000 });
 
