@@ -54,7 +54,7 @@ const msgCont = document.getElementById('msgCont');
     };
 
     // Connection opened
-    const socket = new WebSocket('ws://localhost:9000');
+    const socket = new WebSocket('ws://localhost:8080');
     socket.addEventListener('message', async event => {
         const data = JSON.parse(event.data);
         if (data.id) {
