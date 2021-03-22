@@ -31,3 +31,6 @@ RUN make
 EXPOSE 8080 9000
 
 CMD ["/bin/bash"]
+
+# /lowjs/bin/low server.js
+# docker run --name lowjs -p 127.0.0.1:80:8080/tcp -p 127.0.0.1:9000:9000/tcp -it lowjs-image
