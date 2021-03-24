@@ -15,8 +15,9 @@ app.use(express.static('./dist'));
 app.use(router);
 
 // testing websockets
-app.get('*', (req, res: Request) => {
-    res.sendFile(path.resolve(__dirname, '/index.html'));
+app.get('*', (req, res) => {
+    res.setHeader('set-cookie', ['test=true']);
+    res.sendFile(path.resolve(__dirname, './main.html'));
 });
 
 const server = http.createServer(app);
@@ -26,7 +27,7 @@ const server = http.createServer(app);
 const wss = new WebSocket.Server({ server });
 
 let i = 0;
-wss.on('connection', (ws: WebSocket) => {
+wss.on('connection', (ws: WebSocket, req, client) => {
     //connection is up, let's add a simple simple event
     ws.on('message', (message: string) => {
         const data = JSON.parse(message);
