@@ -46,3 +46,15 @@ wss.on('connection', (ws: WebSocket, req, client) => {
 server.listen(8080, function () {
     console.log(`Listening on port ${port}`);
 });
+
+
+
+// var socket = new WebSocket('wss://10.12.56.227/FSP3000/low');
+// console.time("socketTimeoutTimer2");
+// var testDate = new Date();
+// socket.onclose = () => console.timeEnd("socketTimeoutTimer2");
+// socket.onmessage = (event) => {
+//     try {
+//         console.log(JSON.parse(event.data));
+//     }catch(e){}
+// };
